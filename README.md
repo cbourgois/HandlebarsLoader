@@ -1,7 +1,7 @@
-HandlebarLoader v0.1                
+HandlebarLoader                
 =============
 
-This script help to load Handlebar templates and partials easily.
+This script help to load [Handlebar](https://github.com/wycats/handlebars.js) templates and partials easily.
 
 How to use   
 -------
