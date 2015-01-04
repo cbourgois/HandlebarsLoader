@@ -1,39 +1,44 @@
-HandlebarLoader                
+HandlebarsLoader  (v 0.2)            
 =============
 
 This script help to load [Handlebars](https://github.com/wycats/handlebars.js) templates and partials easily.
 
-How to use   
+How to use it
 -------
 
 ### Initialisation ###
 
-    var loader = new HandlebarsLoader();
-    loader.load( 
-    	[ 
-    		'template1', 
-    		'template2',
-    		'template3'
-    	], 
-    	[         
-    		'partial1'
-    	],  
-    	function()
-    	{   
-    		// templates are available...
-    	} 
-    );
-                    
+```js
+var loader = new HandlebarsLoader();
+loader.load([ 
+		'template1', 
+		'template2',
+		'template3'
+	], 
+	[         
+		'partial1'
+	],  
+	function() {   
+		// templates are available...
+	}
+);
+```
+
 
 ### To use a template ###
-            
-    loader.getTemplate( 'template1' )();
+
+```js            
+loader.getTemplate('template1')();
+```
 
 ### To use easily all templates ###
 
-    var templateContainer = loader.getAllTemplates();
-    templateContainer.template1();
-    templateContainer.template2( { foo: 'bar' } );
+```js
+var templateContainer = loader.getAllTemplates();
+templateContainer.template1();
+templateContainer.template2({foo: 'bar'});
+```
+
        
 
 Options
@@ -69,10 +74,21 @@ By default, the loader will load ``template1`` in ``tpl/template1.html`` and ``p
 
 Define options at initialisation:
 
-    var loader = new HandlebarsLoader( {
-        baseUrl: 'templates/',
-        partialUrl: 'partials/',
-        extension: 'hb'
-    } );
+```js
+var loader = new HandlebarsLoader({
+  baseUrl: 'templates/',
+  partialUrl: 'partials/',
+  extension: 'hb'
+});
 
 Now, this loader will load ``template1`` in ``templates/template1.hb`` and ``partial1`` in ``partials/partial1.hb``.
+
+
+How to build it
+-------
+
+Simply execute
+
+```sh
+make
+``
