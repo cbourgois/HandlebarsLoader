@@ -3,6 +3,14 @@ HandlebarsLoader  (v 0.2.0)
 
 This script help to load [Handlebars](https://github.com/wycats/handlebars.js) templates and partials easily.
 
+
+How to install it via Package Managers
+-------
+
+* [Bower](http://twitter.github.com/bower/): `handlebars-loader`
+
+
+
 How to use it
 -------
 
@@ -92,4 +100,4 @@ Simply execute
 
 ```sh
 make
-``
+```
