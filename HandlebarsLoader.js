@@ -1,92 +1,116 @@
-//  HandlebarLoader.js 0.1
 
-//  (c) 2012 Cyrille Bourgois
-//	HandlebarLoader may be freely distributed under the MIT license.
-//	https://github.com/cbourgois/HandlebarLoader
+/*
+HandlebarsLoader.js 0.2
 
+(c) 2012-2015 Cyrille Bourgois
+https://github.com/cbourgois/HandlebarsLoader
+HandlebarsLoader may be freely distributed under the MIT license.
+ */
+var handlebarsDefinition;
 
-HandlebarsLoader = function(options)
-{
-	this._options = _.extend({
-			'baseUrl': 'tpl/',
-			'partialUrl': 'tpl/partials/',
-			'extension': 'html'
-		},
-		options
-	);
-	this._tpl = {};
-	this._templates = [];
-	this._partials = [];
-	this._callback = undefined;
+handlebarsDefinition = function(_, $, Handlebars) {
+  var HandlebarsLoader;
+  return HandlebarsLoader = (function() {
+    HandlebarsLoader.prototype.tpl = {};
+
+    HandlebarsLoader.prototype.templates = {};
+
+    HandlebarsLoader.prototype.partials = {};
+
+    HandlebarsLoader.prototype.callback = {};
+
+    HandlebarsLoader.prototype.options = {};
+
+    function HandlebarsLoader(options) {
+      this.options = _.extend({
+        baseUrl: 'tpl/',
+        partialUrl: 'tpl/partials/',
+        extension: 'html'
+      }, options);
+    }
+
+    HandlebarsLoader.prototype.getTemplate = function(name) {
+      return this.tpl[name];
+    };
+
+    HandlebarsLoader.prototype.getAllTemplates = function() {
+      return this.tpl;
+    };
+
+    HandlebarsLoader.prototype.load = function(nameTemplates, namePartials, callback) {
+      this.templates = nameTemplates;
+      this.partials = namePartials;
+      this.callback = callback;
+      if (this.templates.length > 0) {
+        return this.loadTemplate(0);
+      } else if (this.partials.length > 0) {
+        return this.loadPartial(0);
+      } else if (this.callback) {
+        return this.callback();
+      }
+    };
+
+    HandlebarsLoader.prototype.loadTemplate = function(index) {
+      var name;
+      name = this.templates[index];
+      return $.ajax({
+        url: this.options.baseUrl + name + '.' + this.options.extension,
+        success: (function(_this) {
+          return function(data) {
+            _this.tpl[name] = function(params) {
+              var tpl;
+              tpl = Handlebars.compile(data);
+              return tpl(params);
+            };
+            index++;
+            if (index < _this.templates.length) {
+              return _this.loadTemplate(index);
+            } else if (_this.partials.length > 0) {
+              return _this.loadPartial(0);
+            } else if (_this.callback) {
+              return _this.callback();
+            }
+          };
+        })(this),
+        dataType: 'html'
+      });
+    };
+
+    HandlebarsLoader.prototype.loadPartial = function(index) {
+      var name;
+      name = this.partials[index];
+      return $.ajax({
+        url: this.options.partialUrl + name + '.' + this.options.extension,
+        success: (function(_this) {
+          return function(data) {
+            Handlebars.registerPartial(name, data);
+            index++;
+            if (index < _this.partials.length) {
+              return _this.loadPartial(index);
+            } else if (_this.callback) {
+              return _this.callback();
+            }
+          };
+        })(this),
+        dataType: 'html'
+      });
+    };
+
+    return HandlebarsLoader;
+
+  })();
 };
 
-_.extend( HandlebarsLoader.prototype, {
-	loadTemplate : function(index)
-	{
-		var name = this._templates[ index ];
-		var that = this;
-    $.ajax({
-			url: that._options.baseUrl + name + '.' + that._options.extension,
-			success: function (data) {
-    		that._tpl[name] = function(params) {
-					var tpl = Handlebars.compile(data);
-					return tpl(params);
-				};
-				index++;
-				if (index < that._templates.length) {
-					that.loadTemplate(index);
-				}
-				else if (that._partials.length > 0) {
-					that.loadPartial(0);
-				}
-				else if (that._callback) {
-					that._callback();
-				}
-			},
-			dataType: 'html'
-		});
-  },
-
-	loadPartial: function(index) {
-		var name = this._partials[index];
-		var that = this;
-		$.ajax({
-			url: that._options.partialUrl + name + '.' + that._options.extension,
-			success: function(data) {
-				Handlebars.registerPartial(name, data);
-				index++;
-				if (index < that._partials.length)	{
-					that.loadPartial(index);
-				}
-				else if (that._callback) {
-					that._callback();
-				}
-      },
-			dataType: 'html'
-		});
-	},
-
-	load: function (nameTemplates, namePartials, callback) {
-		this._templates = nameTemplates;
-		this._partials = namePartials;
-		this._callback = callback;
-    if (this._templates.length > 0) {
-			this.loadTemplate(0);
-		}
-		else if (this._partials.length > 0) {
-			this.loadPartial(0);
-		}
-		else if (this._callback) {
-			this._callback();
-		}
-  },
-
-	getTemplate : function(name) {
-		return this._tpl[name];
-	},
-
-	getAllTemplates: function() {
-		return this._tpl;
-	}
-
-});
+(function(definition, root) {
+  var hasDefine, hasExports;
+  hasDefine = typeof define === "function" && (define.amd != null);
+  hasExports = typeof module !== "undefined" && (module.exports != null);
+  if (hasDefine) {
+    return define(["underscore", "jquery", "handlebars"], definition);
+  } else if (hasExports) {
+    return module.exports = definition(require("underscore"), require("jquery"), require("handlebars"));
+  } else {
+    console.log('root');
+    return root.HandlebarsLoader = definition(root._, root.jQuery || root.Zepto || root.ender || root.$, root.Handlebars);
+  }
+})(handlebarsDefinition, window);
