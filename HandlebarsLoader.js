@@ -5,7 +5,7 @@
 //	https://github.com/cbourgois/HandlebarLoader
 
 
-HandlebarLoader = function( options )
+HandlebarsLoader = function( options )
 {
 	this._options = _.extend(
 		{
@@ -22,7 +22,7 @@ HandlebarLoader = function( options )
 
 };
 
-_.extend( HandlebarLoader.prototype, {
+_.extend( HandlebarsLoader.prototype, {
 
 	loadTemplate : function ( index )
 	{
