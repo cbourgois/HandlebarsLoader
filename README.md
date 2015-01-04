@@ -1,14 +1,14 @@
 HandlebarLoader                
 =============
 
-This script help to load [Handlebar](https://github.com/wycats/handlebars.js) templates and partials easily.
+This script help to load [Handlebars](https://github.com/wycats/handlebars.js) templates and partials easily.
 
 How to use   
 -------
 
 ### Initialisation ###
 
-    var loader = new HandlebarLoader();
+    var loader = new HandlebarsLoader();
     loader.load( 
     	[ 
     		'template1', 
@@ -69,7 +69,7 @@ By default, the loader will load ``template1`` in ``tpl/template1.html`` and ``p
 
 Define options at initialisation:
 
-    var loader = new HandlebarLoader( {
+    var loader = new HandlebarsLoader( {
         baseUrl: 'templates/',
         partialUrl: 'partials/',
         extension: 'hb'
