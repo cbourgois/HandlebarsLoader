@@ -80,6 +80,7 @@ var loader = new HandlebarsLoader({
   partialUrl: 'partials/',
   extension: 'hb'
 });
+```
 
 Now, this loader will load ``template1`` in ``templates/template1.hb`` and ``partial1`` in ``partials/partial1.hb``.
 
