@@ -1,0 +1,32 @@
+{
+  "name": "handlebars-loader",
+  "main": "HandlebarsLoader.js",
+  "version": "0.2.0",
+  "homepage": "https://github.com/cbourgois/HandlebarsLoader",
+  "authors": [
+    "Cyrille Bourgois <cyrille.bourgois@gmail.com> (http://cyrillebourgois.fr)"
+  ],
+  "description": "Handlebars templates and partials loader",
+  "dependencies"  : {
+    "underscore"  : ">=1.6.0",
+    "handlebars"  : ">=1.0.0",
+    "jquery"  : ">=1.0"
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "handlebars",
+    "loader"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
