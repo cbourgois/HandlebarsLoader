@@ -10,7 +10,7 @@ HandlebarsLoader may be freely distributed under the MIT license.
 handlebarsDefinition = (_, $, Handlebars) ->
   class HandlebarsLoader
 
-    @VERSION: '0.2'
+    @VERSION: '0.2.0'
 
     tpl: {}
     templates: {}

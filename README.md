@@ -1,4 +1,4 @@
-HandlebarsLoader  (v 0.2)            
+HandlebarsLoader  (v 0.2.0)            
 =============
 
 This script help to load [Handlebars](https://github.com/wycats/handlebars.js) templates and partials easily.

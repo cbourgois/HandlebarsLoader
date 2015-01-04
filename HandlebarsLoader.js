@@ -11,7 +11,7 @@ var handlebarsDefinition;
 handlebarsDefinition = function(_, $, Handlebars) {
   var HandlebarsLoader;
   return HandlebarsLoader = (function() {
-    HandlebarsLoader.VERSION = '0.2';
+    HandlebarsLoader.VERSION = '0.2.0';
 
     HandlebarsLoader.prototype.tpl = {};
 
