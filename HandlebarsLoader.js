@@ -11,6 +11,8 @@ var handlebarsDefinition;
 handlebarsDefinition = function(_, $, Handlebars) {
   var HandlebarsLoader;
   return HandlebarsLoader = (function() {
+    HandlebarsLoader.VERSION = '0.2';
+
     HandlebarsLoader.prototype.tpl = {};
 
     HandlebarsLoader.prototype.templates = {};
@@ -110,7 +112,6 @@ handlebarsDefinition = function(_, $, Handlebars) {
   } else if (hasExports) {
     return module.exports = definition(require("underscore"), require("jquery"), require("handlebars"));
   } else {
-    console.log('root');
     return root.HandlebarsLoader = definition(root._, root.jQuery || root.Zepto || root.ender || root.$, root.Handlebars);
   }
 })(handlebarsDefinition, window);
