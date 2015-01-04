@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>HandlebarsLoader Example</title>
+</head>
+<body>
+  <script src="./../test/vendor/jquery.js"></script>
+  <script src="./../test/vendor/underscore.js"></script>
+  <script src="./../test/vendor/handlebars.js"></script>
+  <script src="./../HandlebarsLoader.js"></script>  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#version").html(HandlebarsLoader.VERSION);
+      var loader = new HandlebarsLoader();
+      loader.load([
+          'template1',
+          'template2'
+        ],
+        [
+          'link'
+        ],
+        function(){
+          var template1 = loader.getTemplate('template1');
+          var template2 = loader.getTemplate('template2');
+          $("#container").append( template1() );
+          $("#container").append( 
+            template2({
+              first: "one",
+              object: {
+                foo: "bar"
+              }
+            }) 
+          );
+        }
+      );
+    });
+  </script>
+  <h1>HandlebarsLoader Example</h1>
+  <p>Version <span id="version"></span></p>
+  <div id="container"></div>
+</body>
+</html>
